@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "LTEE Project"
+abstract: "A reproducible analysis project for LTEE variant calling"
+type: software
+authors:
+  - given-names: "Hala"
+    family-names: "Alsaleh"
+    email: "hala.Alsaleh@mbzuai.ac.ae"
+repository-code: "https://github.com/halalsaleh7212-spec/ltee-project"
+license: MIT
+version: 0.1.0
+date-released: "2026-10-27"
