@@ -21,4 +21,22 @@ papermill = ">=2.6"   # Quarto needs it for report parameters (-P)
 check = { cmd = "python --version && quarto --version", description = "Check that the tools work" }
 # `reproduce` must rebuild every result from the raw data with one command.
 # The lessons replace this placeholder with real steps.
-reproduce = { cmd = "python -c \"print('Nothing to reproduce yet: add your steps to the reproduce task in pixi.toml')\"", description = "Rebuild all results from raw data" }
+download = { cmd = "python scripts/download_data.py", description = "Download the raw data and verify checksums" }
+reproduce = [{ task = "qc" }, { task = "variant-calling" }]
+
+[feature.pipeline]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[feature.pipeline.dependencies]
+fastqc = ">=0.13.0,<0.14"
+multiqc = ">=1.35,<2"
+bwa = ">=0.7.19,<0.8"
+samtools = ">=1.25,<2"
+bcftools = ">=1.25,<2"
+
+[feature.pipeline.tasks]
+qc = { cmd = "mkdir -p results/qc/fastqc && fastqc --quiet --threads 2 --outdir results/qc/fastqc data/raw/fastq/*.fastq && multiqc --force -o results/qc/multiqc results/qc/fastqc", depends-on = ["download"], description = "FastQC on each FASTQ file, then a MultiQC summary" }
+variant-calling = { cmd = "bash scripts/run_variant_calling.sh", depends-on = ["download"], description = "Align, call and filter variants (shell script)" }
+
+[environments]
+pipeline = ["pipeline"]
