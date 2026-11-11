@@ -1,0 +1,111 @@
+---
+title: "Mutations in the Long-Term Evolution Experiment"
+subtitle: "Variant calling on three *E. coli* clones from population Ara-3"
+author: "Hala Alsaleh"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: true
+    code-tools: true
+  typst:
+    execute:
+      echo: false
+execute:
+  warning: false
+bibliography: references.bib
+reference-section-title: References
+jupyter: python3
+---
+
+## Question
+
+How many mutations did *E. coli* accumulate over 50,000 generations of the
+Long-Term Evolution Experiment [@tenaillon2016], and is that answer robust to
+how strictly we filter the variant calls?
+
+This report characterizes the input reads. Variant counts and filtering sensitivity will be added when the variant-analysis reporting exercise is completed.
+
+## Data
+
+```{python}
+#| tags: [parameters]
+# Number of reads per file used for the length, GC and quality summaries.
+# Change it without editing the report: quarto render ... -P max_reads:5000
+max_reads = 10000
+```
+
+```{python}
+#| label: setup
+#| echo: false
+import sys
+
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+
+from scripts.fastq_stats import quality_by_position, summarize
+
+samples = pd.read_csv("metadata/samples.tsv", sep="\t", keep_default_na=False)
+fastq_files = list(samples["fastq_1"]) + list(samples["fastq_2"])
+```
+
+We use a subset of the reads prepared by Data Carpentry [@dc_data]: three
+clones of population Ara-3, frozen at generations
+`{python} ", ".join(f"{g:,}" for g in samples["generation"])`
+(@tbl-samples).
+
+```{python}
+#| label: tbl-samples
+#| tbl-cap: "The three LTEE clones in this project."
+samples[["sample", "strain", "generation", "mutator", "cit"]]
+```
+
+## Reads
+
+```{python}
+#| label: tbl-reads
+#| tbl-cap: "Reads per FASTQ file. Length, GC content and mean base quality are computed on the first reads of each file (parameter `max_reads`)."
+reads = pd.DataFrame([summarize(f, max_reads) for f in sorted(fastq_files)])
+reads.round(1)
+```
+
+Each file has `{python} f"{reads['reads'].min():,}"` reads, so each sample has
+`{python} f"{reads['reads'].min():,}"` read pairs. The mean read length is
+`{python} f"{reads['mean_length'].mean():.0f}"` bases because the reads were
+trimmed before subsampling. @fig-quality shows that base quality stays high
+along the reads.
+
+```{python}
+#| label: fig-quality
+#| fig-cap: "Mean base quality along the reads (first `max_reads` reads of each file). Colour shows the sample, line style the read of the pair."
+#| fig-alt: "Line plot of mean Phred quality against position in the read, six lines (three samples, read 1 solid and read 2 dashed). Quality starts near 32, peaks near 39 around position 15, falls to about 33 by position 80 and stays there to position 150, with a brief dip near position 102. All six files follow the same shape."
+colors = ["#2a78d6", "#eb6834", "#1baf7a"]  # one per sample, in generation order
+fig, ax = plt.subplots(figsize=(7, 4.2))
+for color, (_, row) in zip(colors, samples.sort_values("generation").iterrows()):
+    for read, style in [("fastq_1", "-"), ("fastq_2", "--")]:
+        quality_by_position(row[read], max_reads).plot(
+            ax=ax, color=color, linestyle=style, linewidth=1.5,
+            label=f"{row['sample']} (gen. {row['generation']:,}) read {read[-1]}")
+ax.set_xlabel("Position in read (bases)")
+ax.set_ylabel("Mean Phred quality")
+ax.grid(alpha=0.3)
+ax.legend(fontsize=7, ncol=3, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.18))
+fig.tight_layout()
+plt.show()
+```
+
+The mean GC content is `{python} f"{reads['gc_percent'].mean():.1f}"`%.
+
+## Software
+
+```{python}
+#| label: versions
+print(f"Python {sys.version.split()[0]}, pandas {pd.__version__}, matplotlib {matplotlib.__version__}")
+```
+
+The exact versions of every package are in `pixi.lock`.
+
+::: {#refs}
+:::

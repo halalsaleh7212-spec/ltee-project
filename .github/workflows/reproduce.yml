@@ -39,5 +39,6 @@ jobs:
           path: |
             results/
             reports/*.html
+            reports/*.pdf
           if-no-files-found: ignore
           retention-days: 7
