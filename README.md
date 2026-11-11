@@ -58,3 +58,48 @@ Practice project from the Reproducible and Open Science lessons.
 ## Get the data
 
     pixi exec python scripts/download_data.py
+
+## Docker reproducibility (CBIO7501 Lesson 08)
+
+The LTEE variant-calling workflow was successfully executed
+using Docker Desktop on an Apple Silicon Mac.
+
+### Container configuration
+
+- Image: `ltee-project:0.1.0`
+- Platform: `linux/amd64`
+- Environment: `pipeline`
+- Package specification: `pixi.toml` and `pixi.lock`
+- Image ID: `sha256:8cb802126f71acfca6a0a46cc8f33d0725e9a91cc7b95712a7de36207f58aee1`
+
+### Build command
+
+```bash
+docker build --platform linux/amd64 -f containers/Dockerfile \
+  --build-arg ENV_NAME=pipeline -t ltee-project:0.1.0 .
+```
+
+### Execute the pipeline
+
+```bash
+docker run --rm --platform linux/amd64 \
+  -v "$PWD":/work -w /work \
+  ltee-project:0.1.0 \
+  bash scripts/run_variant_calling.sh
+```
+
+### Verified results
+
+| Sample | Variant count |
+|---|---:|
+| SRR2584863 | 25 |
+| SRR2584866 | 775 |
+| SRR2589044 | 10 |
+
+All three samples produced the expected variant counts.
+
+### Container archive
+
+The image was exported to
+`containers/ltee-project_0.1.0.tar.gz` using `docker save`.
+The archive is excluded from Git using `.gitignore`.
