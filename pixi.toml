@@ -22,7 +22,9 @@ check = { cmd = "python --version && quarto --version", description = "Check tha
 # `reproduce` must rebuild every result from the raw data with one command.
 # The lessons replace this placeholder with real steps.
 download = { cmd = "python scripts/download_data.py", description = "Download the raw data and verify checksums" }
-reproduce = [{ task = "qc" }, { task = "variant-calling" }]
+reproduce = [{ task = "qc" }, { task = "variant-calling" }, { task = "report" }]
+
+report = { cmd = "quarto render reports/ltee-report.qmd", depends-on = ["download"], description = "Render the Quarto report" }
 
 [feature.pipeline]
 platforms = ["linux-64", "osx-arm64", "osx-64"]
