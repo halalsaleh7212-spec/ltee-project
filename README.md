@@ -107,3 +107,15 @@ The archive is excluded from Git using `.gitignore`.
 ## Container
 
 Docker image built from pixi.lock: `docker build --platform linux/amd64 -f containers/Dockerfile --build-arg ENV_NAME=pipeline -t ltee-project:0.1.0 .`
+
+## Snakemake workflow
+
+`pixi run reproduce` downloads data, runs `workflow/Snakefile`, and renders
+the report with variant counts and depth sensitivity. Settings are in
+`config/config.yaml`; samples are in `metadata/samples.tsv`.
+
+- `pixi run run-snakemake`: generate the analysis outputs.
+- `pixi run compare-to-shell`: run both implementations and compare variant records.
+- `pixi run -e pipeline snakemake -n`: preview pending jobs.
+
+The shell-script task writes to `results/shell-script/` for comparison.

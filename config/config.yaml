@@ -1,0 +1,11 @@
+samples: metadata/samples.tsv
+reference_gz: data/raw/reference/ecoli_rel606.fasta.gz
+
+# Keep alignment results consistent across thread counts.
+bwa_extra: "-K 10000000"
+
+# Minimum read depth for variant filtering.
+min_depth: 2
+
+# Depth thresholds to compare in the analysis.
+sensitivity_depths: [2, 5, 10, 15]
