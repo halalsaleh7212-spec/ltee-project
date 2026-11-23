@@ -25,7 +25,7 @@ How many mutations did *E. coli* accumulate over 50,000 generations of the
 Long-Term Evolution Experiment [@tenaillon2016], and is that answer robust to
 how strictly we filter the variant calls?
 
-This report characterizes the input reads. Variant counts and filtering sensitivity will be added when the variant-analysis reporting exercise is completed.
+This report summarizes read quality, variant counts, and sensitivity to the minimum read depth used for filtering.
 
 ## Data
 
@@ -97,6 +97,81 @@ plt.show()
 ```
 
 The mean GC content is `{python} f"{reads['gc_percent'].mean():.1f}"`%.
+
+## Variants
+
+Reads are aligned to REL606 with BWA, followed by variant calling with
+bcftools and filtering with `vcfutils.pl varFilter`. The Snakemake workflow
+reads its settings from `config/config.yaml`. The
+[MultiQC report](../results/qc/multiqc/multiqc_report.html) summarizes read QC.
+
+```{python}
+#| label: setup-variants
+from pathlib import Path
+import yaml
+
+with open("config/config.yaml") as fh:
+    config = yaml.safe_load(fh)
+
+def count_variants(path):
+    with open(path) as fh:
+        return sum(1 for line in fh if not line.startswith("#"))
+
+variants = samples[["sample", "generation", "mutator"]].sort_values("generation").copy()
+variants["variants"] = [count_variants(f"results/vcf/{s}_final_variants.vcf") for s in variants["sample"]]
+```
+
+```{python}
+#| label: tbl-variants
+#| tbl-cap: "Variant records per clone at the configured minimum depth."
+variants
+```
+
+These counts describe variant calls from the subsampled reads, rather than
+an exhaustive inventory of mutations in each genome. The late clone is
+annotated as a mutator in the sample metadata.
+
+### Sensitivity to read depth
+
+```{python}
+#| label: fig-sensitivity
+#| fig-cap: "Variant counts at each minimum depth, plotted by generation."
+#| fig-alt: "Line plot comparing variant counts across generations for each configured minimum read depth."
+sens = pd.DataFrame([
+    {"sample": row["sample"], "generation": row["generation"], "depth": depth,
+     "variants": count_variants(f"results/sensitivity/{row['sample']}_d{depth}.vcf")}
+    for _, row in variants.iterrows()
+    for depth in config["sensitivity_depths"]
+])
+fig, ax = plt.subplots(figsize=(7, 4.2))
+for depth, group in sens.groupby("depth"):
+    group = group.sort_values("generation")
+    ax.plot(group["generation"], group["variants"], marker="o", label=f"Minimum depth {depth}")
+ax.set_yscale("symlog", linthresh=1)
+ax.set_xlabel("Generation")
+ax.set_ylabel("Variant records (log scale above 1)")
+ax.set_xticks(variants["generation"], [f"{g:,}" for g in variants["generation"]])
+ax.grid(alpha=0.3)
+ax.legend(frameon=False)
+fig.tight_layout()
+plt.show()
+```
+
+```{python}
+#| label: tbl-sensitivity
+#| tbl-cap: "Variant counts by sample and minimum depth."
+sensitivity_table = sens.pivot(index=["generation", "sample"], columns="depth", values="variants").sort_index()
+sensitivity_table
+```
+
+**Decision.** We retain minimum depth `{python} config["min_depth"]` for the
+main result to preserve comparability with the original shell workflow,
+and present all tested thresholds so the effect of filtering remains visible.
+For the tested thresholds, the table and figure show whether the ordering
+of clones persists and how strongly the absolute counts change.
+
+These three clones and subsampled reads alone do not establish a population-wide
+mutation rate. See `docs/decisions.md` for the analysis decision.
 
 ## Software
 
