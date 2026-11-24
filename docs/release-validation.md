@@ -42,7 +42,10 @@ Only the disposable exercise folders were removed afterward.
 
 - Complete the real classmate exchange and address any findings; use the
   [reproduce-report template](reproduce-report-template.md).
-- Validate and archive the current container image and rendered report.
+- The current container image is saved and checksum-verified; both container
+  workflows match the trusted VCFs. Native Linux container report validation
+  is pending because plotting stalled under Mac emulation. See
+  [container validation](containers.md). Host-rendered HTML/PDF reports are ready.
 - Practise Zenodo archiving in its sandbox, then enable the public LTEE
   repository in the real Zenodo account before publishing the release.
 - Set the actual release date in `CITATION.cff`, publish the tested `v1.0.0`

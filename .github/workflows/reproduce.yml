@@ -48,3 +48,65 @@ jobs:
             reports/*.pdf
           if-no-files-found: ignore
           retention-days: 7
+
+  container-reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Fresh clone for native Linux container validation
+        uses: actions/checkout@v7
+
+      - name: Build the locked pipeline image
+        run: |
+          set -euo pipefail
+          mkdir -p results/container-validation
+          container_build_context=$(mktemp -d "$RUNNER_TEMP/ltee-container-build.XXXXXX")
+          cp containers/Dockerfile pixi.toml pixi.lock "$container_build_context/"
+          docker build --platform linux/amd64 --build-arg ENV_NAME=pipeline \
+            -t ltee-release-check "$container_build_context" 2>&1 \
+            | tee results/container-validation/build.log
+          docker image inspect ltee-release-check > results/container-validation/image-inspect.json
+
+      - name: Reproduce both workflows and render the report inside the container
+        run: |
+          set -euo pipefail
+          docker run --rm -i --platform linux/amd64 \
+            --mount "type=bind,source=$PWD,target=/work" -w /work \
+            ltee-release-check bash -s 2>&1 <<'CONTAINER_SCRIPT' | tee results/container-validation/run.log
+          set -euo pipefail
+          python scripts/download_data.py
+          snakemake --cores 2
+          nextflow run workflow/nextflow/main.nf -params-file config/config.yaml \
+            -with-report results/nextflow/execution-report.html \
+            -with-trace results/nextflow/execution-trace.tsv
+          python scripts/compare_vcfs.py results/vcf results/nextflow/vcf
+          python - <<'PY_COUNTS'
+          import json
+          from pathlib import Path
+          expected = {"SRR2584863": 25, "SRR2584866": 775, "SRR2589044": 10}
+          counts = {}
+          for sample in expected:
+              path = Path("results/vcf") / f"{sample}_final_variants.vcf"
+              with path.open() as fh:
+                  counts[sample] = sum(not line.startswith("#") for line in fh)
+          print("Expected final variant counts:", json.dumps(expected, sort_keys=True))
+          print("Observed final variant counts:", json.dumps(counts, sort_keys=True))
+          assert counts == expected, f"Unexpected variant counts: {counts}"
+          PY_COUNTS
+          quarto render reports/ltee-report.qmd --to all
+          CONTAINER_SCRIPT
+
+      - name: Committed files must not change during container reproduction
+        run: git status --porcelain && git diff --exit-code
+
+      - name: Keep container results and logs for 7 days
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: container-results
+          path: |
+            results/
+            reports/*.html
+            reports/*.pdf
+          if-no-files-found: warn
+          retention-days: 7
