@@ -51,3 +51,6 @@ Use `pixi run compare-workflows` to build and compare both implementations.
 The GitHub Reproduce workflow runs this check after rendering the report.
 Results and task caches are generated files and are excluded from Git.
 Keep both `work/` and `.nextflow/` if you want to reuse the local task cache.
+
+The remaining teaching exercises, including the pinned nf-core Docker demo,
+are recorded in [Nextflow exercises](nextflow-exercises.md).

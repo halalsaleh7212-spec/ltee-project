@@ -1,0 +1,22 @@
+# Explicit pipeline packages, osx-arm64, recorded 2026-11-25.
+# Generated with: pixi list -e pipeline --explicit
+# Full transitive dependencies and other platforms are in pixi.lock.
+
+Name        Version  Build                     Size  Kind   Source
+bcftools    1.25     h6bd33b9_1          819.99 KiB  conda  https://conda.anaconda.org/bioconda
+bwa         0.7.19   hba9b596_1          217.48 KiB  conda  https://conda.anaconda.org/bioconda
+fastqc      0.13.0   hdfd78af_0           12.37 MiB  conda  https://conda.anaconda.org/bioconda
+graphviz    14.1.2   hec8c438_0            2.12 MiB  conda  https://conda.anaconda.org/conda-forge
+ipykernel   7.4.0    pyhdba7688_0        139.66 KiB  conda  https://conda.anaconda.org/conda-forge
+jupyterlab  4.6.5    pyhd8ed1ab_0         12.94 MiB  conda  https://conda.anaconda.org/conda-forge
+matplotlib  3.11.2   py313h8db8848_1      14.64 KiB  conda  https://conda.anaconda.org/conda-forge
+multiqc     1.35     pyhdfd78af_2          4.06 MiB  conda  https://conda.anaconda.org/bioconda
+nextflow    26.10.7  h2a3209d_0           40.96 MiB  conda  https://conda.anaconda.org/bioconda
+pandas      2.3.3    py313h7d16b84_2      13.26 MiB  conda  https://conda.anaconda.org/conda-forge
+papermill   2.7.0    pyhd8ed1ab_0         69.24 KiB  conda  https://conda.anaconda.org/conda-forge
+python      3.13.18  hb59dee6_100_cp313   11.42 MiB  conda  https://conda.anaconda.org/conda-forge
+pyyaml      6.0.3    py313h0984dbd_4     199.48 KiB  conda  https://conda.anaconda.org/conda-forge
+quarto      1.11.9   h067315b_0           23.62 MiB  conda  https://conda.anaconda.org/conda-forge
+samtools    1.25     h36b3a25_0          449.71 KiB  conda  https://conda.anaconda.org/bioconda
+snakefmt    2.1.0    pyhdfd78af_0         49.94 KiB  conda  https://conda.anaconda.org/bioconda
+snakemake   9.27.2   hdfd78af_0           11.07 KiB  conda  https://conda.anaconda.org/bioconda

@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
-title: "LTEE Project"
-abstract: "A reproducible analysis project for LTEE variant calling"
+title: "LTEE variant calling"
+abstract: "Reproducible variant calling on three Escherichia coli clones from population Ara-3 of the Long-Term Evolution Experiment, using Snakemake and Nextflow with a sensitivity analysis of the minimum read-depth filter."
 type: software
 authors:
   - given-names: "Hala"
@@ -9,5 +9,45 @@ authors:
     email: "hala.Alsaleh@mbzuai.ac.ae"
 repository-code: "https://github.com/halalsaleh7212-spec/ltee-project"
 license: MIT
-version: 0.1.0
+version: "0.1.0"
 date-released: "2026-10-27"
+keywords:
+  - reproducibility
+  - variant calling
+  - Long-Term Evolution Experiment
+  - Snakemake
+  - Nextflow
+references:
+  - type: article
+    title: "Tempo and mode of genome evolution in a 50,000-generation experiment"
+    authors:
+      - family-names: "Tenaillon"
+        given-names: "Olivier"
+      - family-names: "Barrick"
+        given-names: "Jeffrey E."
+      - family-names: "Ribeck"
+        given-names: "Noah"
+      - family-names: "Deatherage"
+        given-names: "Daniel E."
+      - family-names: "Blanchard"
+        given-names: "Jeffrey L."
+      - family-names: "Dasgupta"
+        given-names: "Aurko"
+      - family-names: "Wu"
+        given-names: "Gabriel C."
+      - family-names: "Wielgoss"
+        given-names: "Sébastien"
+      - family-names: "Cruveiller"
+        given-names: "Stéphane"
+      - family-names: "Médigue"
+        given-names: "Claudine"
+      - family-names: "Schneider"
+        given-names: "Dominique"
+      - family-names: "Lenski"
+        given-names: "Richard E."
+    journal: "Nature"
+    volume: 536
+    start: 165
+    end: 170
+    year: 2016
+    doi: "10.1038/nature18959"
