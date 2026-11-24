@@ -4,6 +4,11 @@ A reproducible analysis project for LTEE variant calling
 
 Author: Hala Alsaleh
 
+## Contributing
+
+For bug reports, proposed changes, and pull requests, see
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Reproduce the results
 
 You need [Pixi](https://pixi.prefix.dev/latest/) and an internet connection.
