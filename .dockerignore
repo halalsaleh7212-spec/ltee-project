@@ -8,3 +8,7 @@ work/
 .snakemake/
 .nextflow/
 *.sif
+
+# Saved images are release artifacts, not image build inputs.
+containers/*.tar.gz
+containers/*.sif

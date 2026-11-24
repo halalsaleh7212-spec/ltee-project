@@ -7,10 +7,10 @@ authors:
   - given-names: "Hala"
     family-names: "Alsaleh"
     email: "hala.Alsaleh@mbzuai.ac.ae"
+    orcid: "https://orcid.org/0009-0005-6882-748X"
 repository-code: "https://github.com/halalsaleh7212-spec/ltee-project"
 license: MIT
-version: "0.1.0"
-date-released: "2026-10-27"
+version: "1.0.0"
 keywords:
   - reproducibility
   - variant calling
