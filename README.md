@@ -119,3 +119,29 @@ the report with variant counts and depth sensitivity. Settings are in
 - `pixi run -e pipeline snakemake -n`: preview pending jobs.
 
 The shell-script task writes to `results/shell-script/` for comparison.
+
+## Nextflow workflow
+
+The same analysis is implemented in `workflow/nextflow/main.nf`, using the
+sample sheet and `config/config.yaml` shared with Snakemake. Launch commands
+from the project root. Nextflow publishes copies of its results under
+`results/nextflow/` and keeps its resumable task cache in `work/` and `.nextflow/`.
+
+```bash
+pixi run run-nextflow
+pixi run compare-workflows
+```
+
+To reuse unchanged tasks and write an execution report:
+
+```bash
+pixi run -e pipeline nextflow run workflow/nextflow/main.nf \
+  -params-file config/config.yaml -resume \
+  -with-report results/nextflow/execution-report.html
+```
+
+`pixi run reproduce` continues to use Snakemake. The GitHub Reproduce workflow
+also runs `compare-workflows` to verify that both implementations agree.
+
+See [Nextflow validation](docs/nextflow-validation.md) for the comparison and
+resume results, including the depth-10 experiment.
