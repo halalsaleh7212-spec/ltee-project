@@ -956,6 +956,7 @@ environments:
       - conda: https://conda.anaconda.org/bioconda/linux-64/samtools-1.25-h9dcdb79_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/fastqc-0.13.0-hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/multiqc-1.35-pyhdfd78af_2.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.10.7-h2a3209d_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakefmt-2.1.0-pyhdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakemake-9.27.2-hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakemake-interface-common-1.23.1-pyhdfd78af_0.conda
@@ -987,6 +988,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/coin-or-osi-0.108.12-hf4fecb4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/coin-or-utils-2.11.13-hc93afbd_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/contourpy-1.4.0-py313h2551ef2_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/coreutils-9.12-hebe6cf0_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/curl-8.23.0-ha042cf0_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cyrus-sasl-2.1.28-hac629b4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/dart-sass-1.101.0-hfc2019e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/dbus-1.16.2-he8c428d_2.conda
@@ -1346,6 +1349,7 @@ environments:
       osx-64:
       - conda: https://conda.anaconda.org/bioconda/noarch/fastqc-0.13.0-hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/multiqc-1.35-pyhdfd78af_2.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.10.7-h2a3209d_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakefmt-2.1.0-pyhdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakemake-9.27.2-hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakemake-interface-common-1.23.1-pyhdfd78af_0.conda
@@ -1550,6 +1554,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/coin-or-osi-0.108.12-h9c53fe0_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/coin-or-utils-2.11.13-h9cdb5db_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/contourpy-1.4.0-py313hc8225fc_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/coreutils-9.12-had63097_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/curl-8.23.0-h5318221_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/dart-sass-1.101.0-h8822bef_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/debugpy-1.8.22-py313h543f18f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/deno-2.9.8-h071200e_0.conda
@@ -1682,6 +1688,7 @@ environments:
       osx-arm64:
       - conda: https://conda.anaconda.org/bioconda/noarch/fastqc-0.13.0-hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/multiqc-1.35-pyhdfd78af_2.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.10.7-h2a3209d_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakefmt-2.1.0-pyhdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakemake-9.27.2-hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/snakemake-interface-common-1.23.1-pyhdfd78af_0.conda
@@ -1886,6 +1893,8 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/coin-or-osi-0.108.12-h8aa3827_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/coin-or-utils-2.11.13-h6bed822_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/contourpy-1.4.0-py313hcb059c8_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/coreutils-9.12-h74c22ad_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/curl-8.23.0-h6651222_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/dart-sass-1.101.0-h820172f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/debugpy-1.8.22-py313h10a4758_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/deno-2.9.8-h11c3e36_0.conda
@@ -2136,6 +2145,19 @@ packages:
     - multiqc >=1.35,<2.0a0
   size: 4258856
   timestamp: 1790108003183
+- conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.10.7-h2a3209d_0.conda
+  sha256: 8796162cdb34d85d6dc117d0bc7d369cca89ae86a440ad29e18e1a39d4f13875
+  md5: 017226e52562107a70fb7afbf8eae5be
+  depends:
+  - coreutils
+  - curl
+  - openjdk >=17,<26
+  license: Apache-2.0
+  run_exports:
+    weak:
+    - nextflow >=26.10.7,<26.11.0a0
+  size: 42951910
+  timestamp: 1795203311026
 - conda: https://conda.anaconda.org/bioconda/noarch/snakefmt-2.1.0-pyhdfd78af_0.conda
   sha256: ee20310d6a89309e23a00beffb4bcb470460d6b87a7b17ac75a2ad6ab2ce8357
   md5: 17741176227f1ec85250ae596c1b723f
@@ -2820,6 +2842,35 @@ packages:
   run_exports: {}
   size: 329540
   timestamp: 1789746824998
+- conda: https://conda.anaconda.org/conda-forge/linux-64/coreutils-9.12-hebe6cf0_0.conda
+  sha256: f310293cb912a17c9c806402729500fc5a6b69a38b90ffed77d9c5999ea625c4
+  md5: a600cec5922296d03bd0473d3837301e
+  depends:
+  - libgcc >=15
+  - __glibc >=2.17,<3.0.a0
+  license: GPL-3.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 3494585
+  timestamp: 1789486354729
+- conda: https://conda.anaconda.org/conda-forge/linux-64/curl-8.23.0-ha042cf0_0.conda
+  sha256: c34fd476d8ad5eede00a3742f33bf52400e01b35bc2777ab2306d6fc21121949
+  md5: ae85b19bbac7336f4efc4802c351effa
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  - krb5 >=1.22.2,<1.23.0a0
+  - libcurl 8.23.0 ha042cf0_0
+  - libgcc >=15
+  - libpsl >=0.23.1,<0.24.0a0
+  - libssh2 >=1.11.1,<2.0a0
+  - libzlib >=1.3.2,<2.0a0
+  - openssl >=3.5.9,<4.0a0
+  - zstd >=1.5.7,<1.6.0a0
+  license: curl
+  license_family: MIT
+  run_exports: {}
+  size: 197652
+  timestamp: 1791990906207
 - conda: https://conda.anaconda.org/conda-forge/linux-64/cyrus-sasl-2.1.28-hac629b4_1.conda
   sha256: 7684da83306bb69686c0506fb09aa7074e1a55ade50c3a879e4e5df6eebb1009
   md5: af491aae930edc096b58466c51c4126c
@@ -8908,6 +8959,33 @@ packages:
   run_exports: {}
   size: 304711
   timestamp: 1789746907729
+- conda: https://conda.anaconda.org/conda-forge/osx-64/coreutils-9.12-had63097_0.conda
+  sha256: a0e582dc00ea2ea7d7952e18758a4b40bfd941685a751b11109fbb4fcd65e217
+  md5: 422ed2c78561ea65c449dded4ec57076
+  depends:
+  - __osx >=11.0
+  license: GPL-3.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 1913754
+  timestamp: 1789486448832
+- conda: https://conda.anaconda.org/conda-forge/osx-64/curl-8.23.0-h5318221_0.conda
+  sha256: 71970c995a615b1597c950278836264f42e659ff57e7f4b6db0d40b89f6b7680
+  md5: e9539fc03332e9e4b058b72aadf10a62
+  depends:
+  - __osx >=11.0
+  - krb5 >=1.22.2,<1.23.0a0
+  - libcurl 8.23.0 h5318221_0
+  - libpsl >=0.23.1,<0.24.0a0
+  - libssh2 >=1.11.1,<2.0a0
+  - libzlib >=1.3.2,<2.0a0
+  - openssl >=3.5.9,<4.0a0
+  - zstd >=1.5.7,<1.6.0a0
+  license: curl
+  license_family: MIT
+  run_exports: {}
+  size: 187231
+  timestamp: 1791992019640
 - conda: https://conda.anaconda.org/conda-forge/osx-64/dart-sass-1.101.0-h8822bef_0.conda
   sha256: 6b2ae8112654fe154bf3db0047ff0279ad30f49c0f1ff187d55810ca565a97d1
   md5: 70552a8fceb3aec27c86c7c51b17a19b
@@ -11295,6 +11373,33 @@ packages:
   run_exports: {}
   size: 290478
   timestamp: 1789746853722
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/coreutils-9.12-h74c22ad_0.conda
+  sha256: f9e693d4d68a73d626dbe56452c990d2d249916dd50d8a6ac3001fe1d078160b
+  md5: d6c76e78c52657adc50151e0af762a71
+  depends:
+  - __osx >=11.0
+  license: GPL-3.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 1769546
+  timestamp: 1789486371666
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/curl-8.23.0-h6651222_0.conda
+  sha256: c9628a012fba18552ef02a8a2b46db48153d10b9209c57bdec0a33afcdc508a5
+  md5: de96eb952f8c91d2b5161eb55f9a24f0
+  depends:
+  - __osx >=11.0
+  - krb5 >=1.22.2,<1.23.0a0
+  - libcurl 8.23.0 h6651222_0
+  - libpsl >=0.23.1,<0.24.0a0
+  - libssh2 >=1.11.1,<2.0a0
+  - libzlib >=1.3.2,<2.0a0
+  - openssl >=3.5.9,<4.0a0
+  - zstd >=1.5.7,<1.6.0a0
+  license: curl
+  license_family: MIT
+  run_exports: {}
+  size: 183387
+  timestamp: 1792014031633
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/dart-sass-1.101.0-h820172f_0.conda
   sha256: cafab0396ee8c6e24c0401d71be1669852a03e11cf130cf394b65382fe88ae7f
   md5: 0271842f65ca34de8326cf8dbd38dda8

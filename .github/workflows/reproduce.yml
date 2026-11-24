@@ -28,6 +28,9 @@ jobs:
       - name: Rebuild every result from raw data
         run: pixi run reproduce
 
+      - name: Compare Snakemake and Nextflow variant records
+        run: pixi run compare-workflows
+
       - name: Committed files must not change when the analysis runs
         run: git status --porcelain && git diff --exit-code
 

@@ -39,8 +39,11 @@ bcftools = ">=1.25,<2"
 snakemake = ">=9.27.2,<10"
 graphviz = ">=14.1.2,<15"
 snakefmt = ">=2.1.0,<3"
+nextflow = ">=26.10.7,<27"
 
 [feature.pipeline.tasks]
+run-nextflow = { cmd = "nextflow run workflow/nextflow/main.nf -params-file config/config.yaml", depends-on = ["download"], description = "Run Nextflow with results in results/nextflow" }
+compare-workflows = { cmd = "python scripts/compare_vcfs.py results/vcf results/nextflow/vcf", depends-on = ["run-snakemake", "run-nextflow"], description = "Compare Snakemake and Nextflow variant records" }
 run-snakemake = { cmd = "snakemake --cores 4", depends-on = ["download"], description = "Run the Snakemake workflow" }
 compare-to-shell = { cmd = "python scripts/compare_vcfs.py results/shell-script/vcf results/vcf", depends-on = ["variant-calling", "run-snakemake"], description = "Compare shell-script and Snakemake variant records" }
 qc = { cmd = "mkdir -p results/qc/fastqc && fastqc --quiet --threads 2 --outdir results/qc/fastqc data/raw/fastq/*.fastq && multiqc --force -o results/qc/multiqc results/qc/fastqc", depends-on = ["download"], description = "FastQC on each FASTQ file, then a MultiQC summary" }
