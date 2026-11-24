@@ -43,6 +43,10 @@ pixi run -e pipeline nextflow run workflow/nextflow/main.nf \
 
 ## Cleanup
 
+The practice commands below assume the pipeline environment is active. Start
+`pixi shell -e pipeline` from the project root, then enter the disposable practice
+folder. Use `exit` when finished to leave the environment.
+
 Inspect before deleting a cache:
 
 ```bash
@@ -57,7 +61,9 @@ cleaned. Published results remained usable because the configuration uses
 
 ## Pinned community pipeline
 
-With Docker running, the separate community-pipeline exercise used:
+With Docker running and the pipeline environment active as described above,
+the separate community-pipeline exercise used this command from its own
+disposable folder:
 
 ```bash
 nextflow run nf-core/demo -r 1.2.0 -profile test,docker \
