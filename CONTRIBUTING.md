@@ -26,6 +26,7 @@ and the relevant error message; remove any passwords, tokens, or private data.
 
    ```bash
    pixi run compare-to-shell
+   pixi run compare-workflows
    ```
 
    Explain any intentional differences in the results in your pull request.
@@ -39,6 +40,11 @@ and the relevant error message; remove any passwords, tokens, or private data.
 - Commit `pixi.toml` and `pixi.lock` together when changing dependencies.
 - Record analysis decisions in `docs/decisions.md` and update documentation
   when commands or expected outputs change.
+
+## Community conduct
+
+Follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) in issues, pull requests,
+and discussions. Use its private reporting contact for conduct concerns.
 
 ## Submit a pull request
 
