@@ -1,35 +1,48 @@
-# Reproduce report template
+## Reproduce report
 
-A classmate can copy this into an issue after testing a clean clone using
-only the repository documentation. An automated agent or CI run must be
-identified as such and does not count as the classmate exchange.
+- **Repository and commit:** <!-- URL and `git rev-parse --short HEAD` -->
+- **My computer:** <!-- OS, chip, Pixi version (`pixi --version`) -->
+- **Date and time spent:** <!-- minutes from clone to result -->
 
-- Reviewer:
-- Repository URL and exact commit:
-- Operating system, processor, and Pixi version:
-- Date and elapsed time:
+## 1. Could I find out what the project is and how to run it?
 
-## Documentation
+- [ ] The README says what the project is about
+- [ ] The README gives the command(s) to reproduce
+- [ ] The README says what output to expect
+- [ ] The data source is given with an identifier and a license
 
-Could you identify the question, data source and license, setup commands,
-and expected outputs without asking the author? Record anything unclear.
+Notes:
 
-## Execution
+## 2. Did it run?
 
-Record the commands actually run and full error messages. Did the locked
-installation, downloads/checksums, workflow, report rendering, and GitHub
-checks succeed? Were any undocumented changes needed?
+- [ ] `pixi install --locked` worked (the lock file matches the manifest)
+- [ ] The data downloaded and the checksums passed
+- [ ] `pixi run reproduce` (or the documented command) finished without errors
+- [ ] The *Reproduce* GitHub Action of the repository is green
 
-## Results
+Commands I ran, and any error message (paste it in full):
 
-Record the observed numbers and how you compared them. For this LTEE
-project, `pixi run compare-workflows` should report identical VCF records:
-25 / 775 / 10 for SRR2584863 / SRR2584866 / SRR2589044.
+```
+```
 
-## Reuse and improvement
+## 3. Did I get the same results?
 
-Could you find the licenses and citation? Name the single most useful
-improvement, and record whether the author subsequently fixed it.
+- [ ] The numbers / figures match what the README or report says
+- [ ] I compared them how? <!-- e.g. compare_vcfs.py, checksums, by eye -->
 
-Adapted from the course's [reproduce-report template](https://khanlab.bio/cbio7501-f26/assessment/reproduce-report-template.html),
-CC BY 4.0. Do not mark any check successful without performing it.
+Differences I found:
+
+Notes for this project: at minimum depth 2, expected final variants are
+10, 25 and 775 for SRR2589044, SRR2584863 and SRR2584866 respectively.
+`pixi run compare-workflows` compares complete final VCF records between
+Snakemake and Nextflow.
+
+## 4. Could I reuse it?
+
+- [ ] There is a LICENSE, and I understand what I may do
+- [ ] There is a valid `CITATION.cff`
+
+## 5. The one change that would help most
+
+<!-- Be specific and kind: "Add the --cores value to the README", not "unclear". -->
+Source: [CBIO7501 reproduce-report template](https://khanlab.bio/cbio7501-f26/assessment/reproduce-report-template.html), CC BY 4.0.

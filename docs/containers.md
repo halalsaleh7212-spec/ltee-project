@@ -4,7 +4,7 @@ The recipes in `containers/Dockerfile` and `containers/apptainer.def` build
 software environments from `pixi.toml` and `pixi.lock`. Run build commands
 from the repository root.
 
-## Prepared v1.0.0 release image
+## v1.0.0 release image
 
 A new `pipeline` image was built on 2026-11-25 for `linux/amd64`. Its
 Dockerfile, `pixi.toml`, and `pixi.lock` match commit
@@ -19,7 +19,7 @@ or this project's source/data, which must be mounted separately.
 | Image tag | `ltee-project:1.0.0` |
 | Image ID reported by Docker | `sha256:82b590f63bbe7e84130696b11fbffa809554001a1048c7529cc70520c1f0eca2` |
 | Platform | `linux/amd64` |
-| Prepared archive | `ltee-project_1.0.0_linux-amd64.tar.gz` |
+| Published archive | `ltee-project_1.0.0_linux-amd64.tar.gz` |
 | Archive bytes | 1,162,925,003 |
 | Archive SHA-256 | `c490e81aca71da8010819c73cfaa02bb72ee0dc88d802909542e727fe45fc5ff` |
 
@@ -28,6 +28,64 @@ prepared with `docker save` and gzip, and is kept outside Git. The previous
 `0.1.0` image and archive were retained. The release provenance file records
 the input hashes and distinguishes the working-tree snapshot used for testing
 from the matching committed build specification.
+
+### Companion download and saved-image use
+
+The companion was published on 2026-11-25 with DOI
+[10.5281/zenodo.24533491](https://doi.org/10.5281/zenodo.24533491).
+Its public metadata, eight file names, byte sizes and provider MD5 checksums
+match the verified upload package. The record supplements source-code DOI
+[10.5281/zenodo.24533293](https://doi.org/10.5281/zenodo.24533293).
+
+The [companion record](https://zenodo.org/records/24533491) contains
+these eight files together:
+
+- `ltee-project_1.0.0_linux-amd64.tar.gz`
+- `ltee-project_1.0.0_container-provenance.json`
+- `ltee-report.html`
+- `ltee-report.pdf`
+- `multiqc_report.html`
+- `validation-evidence.zip`
+- `README.txt`
+- `SHA256SUMS`
+
+Download all eight files into one folder. `SHA256SUMS` covers each of the
+other seven files. From that download folder, verify them before loading:
+
+```bash
+shasum -a256 -c SHA256SUMS
+docker load -i ltee-project_1.0.0_linux-amd64.tar.gz
+```
+
+On Linux, `sha256sum -c SHA256SUMS` is an alternative checksum command.
+The image archive's verified SHA-256 is recorded in the table
+above. Docker accepts the gzip-compressed archive directly.
+
+Run the saved environment against a checkout of the corresponding source
+release. The image supplies the pipeline tools but contains neither the
+project source nor its input data:
+
+```bash
+git clone --branch v1.0.0 https://github.com/halalsaleh7212-spec/ltee-project.git
+cd ltee-project
+docker run --rm --platform linux/amd64 \
+  --mount "type=bind,source=$PWD,target=/work" -w /work \
+  ltee-project:1.0.0 bash -c 'python scripts/download_data.py &&
+    snakemake --cores 2 &&
+    nextflow run workflow/nextflow/main.nf -params-file config/config.yaml &&
+    python scripts/compare_vcfs.py results/vcf results/nextflow/vcf'
+```
+
+The supplied HTML/PDF reports were rendered successfully on the host. They
+are not evidence that rendering completed inside the archived image under
+Mac amd64 emulation. The native Linux rebuild checks and archived-image
+limitation are documented below. Open the companion's `multiqc_report.html`
+directly when viewing the PDF's quality report.
+
+The companion's license statement distinguishes original project code
+(MIT), original report text/figures (CC BY 4.0), the read subset (CC0), and
+third-party software, data and MultiQC components under their own terms.
+No blanket MIT or CC BY 4.0 license is applied to the complete container.
 
 ### Build without including old archives
 
