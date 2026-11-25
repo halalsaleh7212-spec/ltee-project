@@ -109,6 +109,17 @@ GCA_000017985.1. Source URLs and provider checksums are in
 [metadata/checksums.sha256](metadata/checksums.sha256).
 Raw data is downloaded by code and kept read-only.
 
+## Release and data availability
+
+The analysis code and locked environment are available in this repository.
+The input data remain available through the figshare and NCBI identifiers
+listed above; the download script retrieves them without requiring local files.
+Version 1.0.0 is being prepared for release and Zenodo archiving. No project
+DOI is claimed until that archive is published and verified.
+See [release readiness](docs/release-validation.md) for completed checks and
+remaining submission steps, and the [peer report template](docs/reproduce-report-template.md)
+for the classmate exchange.
+
 ## Citation
 
 See [CITATION.cff](CITATION.cff), or use GitHub's **Cite this repository** button.
