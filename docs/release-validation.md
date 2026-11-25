@@ -3,6 +3,14 @@
 Status: release preparation in progress; no Zenodo DOI has been issued for
 this project. A classmate's reproduce report is still pending.
 
+The production Zenodo connection to GitHub was approved on 2026-11-25, and
+archiving is enabled for the public `halalsaleh7212-spec/ltee-project`
+repository. Sandbox archiving practice and publication of the tested release
+are still pending. `CITATION.cff` is prepared with the intended release date
+2026-11-25; confirm that date immediately before publication and update it if
+publication occurs on a later date. This preparation does not establish that
+the release or archive has been published.
+
 ## Independent automated clone check
 
 On 2026-11-25, a new clone of commit
@@ -75,10 +83,11 @@ Only the disposable exercise folders were removed afterward.
   image built from the same specification also passed both workflows and
   HTML/PDF rendering. See [container validation](containers.md) for the
   distinction between the archived image and the CI rebuilds.
-- Practise Zenodo archiving in its sandbox, then enable the public LTEE
-  repository in the real Zenodo account before publishing the release.
-- Set the actual release date in `CITATION.cff`, publish the tested `v1.0.0`
-  revision, verify the archive, then add its real DOI and badge.
+- Complete the manual Zenodo Sandbox archiving practice. Production
+  repository archiving is already enabled.
+- Confirm that `CITATION.cff` records the actual publication date, publish
+  the tested `v1.0.0` revision, verify the resulting archive, then add its
+  real DOI and badge.
 - Recheck the released version and submit the repository URL and DOI.
 
 Source: [CBIO7501 Lesson 12](https://khanlab.bio/cbio7501-f26/pages/12-putting-it-together.html).

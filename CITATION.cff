@@ -11,6 +11,7 @@ authors:
 repository-code: "https://github.com/halalsaleh7212-spec/ltee-project"
 license: MIT
 version: "1.0.0"
+date-released: "2026-11-25"
 keywords:
   - reproducibility
   - variant calling
