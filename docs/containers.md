@@ -44,7 +44,7 @@ The root `.dockerignore` also excludes saved image archives when building
 with the full repository as context. Build outputs and archived images can
 consume several GiB; the new image is displayed as 4.98 GB by `docker image ls`.
 
-### Validation and current rendering limitation
+### Workflow and report validation
 
 In a separate source snapshot, with the original raw data and trusted VCFs
 mounted read-only, the archived image completed all 49 Snakemake jobs and all
@@ -59,14 +59,25 @@ tick calculation. The isolated report run was stopped; packages and source
 were not changed. The separately rendered host HTML/PDF reports are not
 claimed as evidence that rendering passed inside this emulated image.
 
-The GitHub `container-reproduce` job now builds the locked pipeline image on
-a native amd64 Linux runner, runs both workflows, checks exact variant-record
-agreement and expected counts, and renders the report. **Native container CI
-validation is pending.** Its `container-results` artifact retains logs,
-results, and any rendered reports. This check builds a fresh image from the
-same Dockerfile and lockfile; it does not load or certify the exact archived
-image ID above. The base-image tags and build metadata can produce a different
-image ID even with the same locked environment.
+Native Linux container validation **passed on 2026-11-25** at commit
+`2abdb89957b58f3a2476a1012d32b56324c053de`, in both the
+[pull-request run](https://github.com/halalsaleh7212-spec/ltee-project/actions/runs/45496326076/job/138807692874)
+and the
+[branch-push run](https://github.com/halalsaleh7212-spec/ltee-project/actions/runs/45496313679/job/138807647162).
+Each `container-reproduce` job built the locked pipeline image on a native
+amd64 Linux runner, completed both workflows, checked exact variant-record
+agreement and the expected 25/775/10 counts, rendered HTML and PDF, and checked
+that committed files were unchanged. The `container-results` artifacts retain
+logs, results, image inspection metadata, and reports for seven days. The
+parallel direct Pixi reproduction jobs also passed; all four checks are
+recorded in [release validation](release-validation.md).
+
+These checks built fresh images from the same Dockerfile, `pixi.toml`, and
+`pixi.lock` as the prepared archive. They did not load or certify the exact
+archived image ID above. Base-image tags and build metadata can produce a
+different image ID even with the same locked environment. Native Linux
+success validates the build specification and its report workflow; the
+archived image's Mac-emulation rendering limitation remains recorded above.
 
 ## Historical Lesson 08 Docker validation
 
