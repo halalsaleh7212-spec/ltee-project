@@ -14,7 +14,7 @@
 | `docs/` | Structure guide, decisions, validation notes, container history, software versions, and workflow diagram | Committed documentation |
 | `envs/` | Location for Conda environment exports when needed | Exports are generated from the Pixi environment; `pixi.lock` remains the exact software record |
 | `containers/` | Docker and Apptainer recipes; local image archives | Recipes committed; saved images ignored by Git |
-| `.github/workflows/` | Automated reproduction checks | Committed |
+| `.github/workflows/` | Reproduction checks | Committed |
 | `.pixi/`, `.snakemake/`, `.nextflow/`, `work/` | Installed environments and workflow state or task caches | Local generated state; ignored by Git |
 
 At the repository root, `pixi.toml` defines dependencies and tasks, and

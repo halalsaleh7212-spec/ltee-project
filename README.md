@@ -1,5 +1,7 @@
 # LTEE variant calling
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24533293.svg)](https://doi.org/10.5281/zenodo.24533293)
+
 Variant calling on three *Escherichia coli* clones from population Ara-3 of
 Richard Lenski's Long-Term Evolution Experiment (LTEE), sampled at 5,000,
 15,000, and 50,000 generations. We ask how variant counts change across these
@@ -114,11 +116,22 @@ Raw data is downloaded by code and kept read-only.
 The analysis code and locked environment are available in this repository.
 The input data remain available through the figshare and NCBI identifiers
 listed above; the download script retrieves them without requiring local files.
-Version 1.0.0 is being prepared for release and Zenodo archiving. No project
-DOI is claimed until that archive is published and verified.
-See [release readiness](docs/release-validation.md) for completed checks and
-remaining submission steps, and the [peer report template](docs/reproduce-report-template.md)
-for the classmate exchange.
+Version 1.0.0 was published on 2026-11-25 as a
+[GitHub release](https://github.com/halalsaleh7212-spec/ltee-project/releases/tag/v1.0.0)
+and archived on Zenodo with the real version DOI
+[10.5281/zenodo.24533293](https://doi.org/10.5281/zenodo.24533293).
+The downloaded source archive matches all tracked files at release commit
+`96d49a805881da112a8f704d1f3ac91902938fe7`.
+The saved container, HTML/PDF reports, MultiQC report and validation evidence
+are archived together at companion DOI
+[10.5281/zenodo.24533491](https://doi.org/10.5281/zenodo.24533491).
+See [container instructions](docs/containers.md) for download verification and use.
+See [release validation](docs/release-validation.md) for archive verification
+and completed checks. An independent classmate reproduce report remains
+pending; use the [peer report template](docs/reproduce-report-template.md)
+and the [reusable reproducibility checklist](docs/reproducibility-checklist.md).
+The separate Zenodo Sandbox record is a practice exercise and its test DOI
+is not the project's archival DOI.
 
 ## Citation
 
